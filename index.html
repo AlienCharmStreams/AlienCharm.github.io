@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя конфигурация ПК</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        h2 {
+            color: #6c5ce7;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        li:before {
+            content: "•";
+            color: #6c5ce7;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .highlight {
+            color: #ffffff;
+            font-weight: 500;
+        }
+        .subtext {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .section {
+            background: #111;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Моя конфигурация ПК</h1>
+    <p style="text-align: center; color: #aaa;">Сбалансированная сборка для игр и работы • 2024</p>
+
+    <div class="grid">
+        <div class="section">
+            <h2>💻 Основные компоненты</h2>
+            <ul>
+                <li><span class="highlight">Процессор:</span> AMD Ryzen 7 5700X</li>
+                <li><span class="highlight">Охлаждение:</span> JONSBO PISA A5 ARGB White <span class="subtext">(5 теплотрубок)</span></li>
+                <li><span class="highlight">Материнская плата:</span> MSI MPG B550 Gaming Plus</li>
+                <li><span class="highlight">Оперативная память:</span> Patriot Viper Elite II — <span class="highlight">32 ГБ</span> @ 4000 МГц</li>
+                <li><span class="highlight">Видеокарта:</span> Palit RTX 4070 Ti Super <span class="highlight">16 ГБ GDDR6X</span></li>
+                <li><span class="highlight">Блок питания:</span> DeepCool 800W <span class="subtext">80+ Gold</span></li>
+                <li><span class="highlight">Накопители:</span>
+                    <ul>
+                        <li>ADATA SX8200PNP <span class="highlight">1 ТБ SSD</span></li>
+                        <li>WD 1 ТБ + Seagate 1 ТБ HDD</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Корпус:</span> DeepCool CC560 WH V2 <span class="subtext">(белый)</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎮 Периферия</h2>
+            <ul>
+                <li><span class="highlight">Мониторы:</span>
+                    <ul>
+                        <li>LG UltraGear 27GP750-B <span class="highlight">240 Гц</span> <span class="subtext">(основной)</span></li>
+                        <li>Samsung S24D391HL</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Клавиатура:</span> Dark Project KD87A <span class="subtext">(Gateron Teal Cap)</span></li>
+                <li><span class="highlight">Мышь:</span> Lamzu Maya X</li>
+                <li><span class="highlight">Наушники:</span> Razer Barracuda X</li>
+                <li><span class="highlight">Геймпад:</span> PlayStation DualShock 4</li>
+                <li><span class="highlight">Стриминг:</span>
+                    <ul>
+                        <li>Logitech Brio Stream <span class="subtext">(веб-камера)</span></li>
+                        <li>HyperX QuadCast <span class="subtext">(микрофон)</span></li>
+                        <li>Thronmax Zoom S3-TM01 <span class="subtext">(пантограф)</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
