@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Конфигурация ПК</title>
+    <title>Моя конфигурация ПК</title>
     <style>
         /* Основные стили */
         body {
@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* Анимированные звёзды */
+        /* Анимированные звёзды (в 2 слоя для глубины) */
         body::before {
             content: "";
             position: fixed;
@@ -27,13 +27,33 @@
             width: 100%;
             height: 100%;
             background: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="2000" opacity="0.5"><circle cx="100" cy="150" r="1" fill="white"/><circle cx="300" cy="400" r="0.8" fill="white"/><circle cx="500" cy="250" r="1.2" fill="white"/><circle cx="700" cy="600" r="0.7" fill="white"/><circle cx="900" cy="350" r="1" fill="white"/><circle cx="1200" cy="500" r="0.9" fill="white"/><circle cx="1500" cy="200" r="1.1" fill="white"/><circle cx="1800" cy="450" r="0.6" fill="white"/><circle cx="200" cy="700" r="0.8" fill="white"/><circle cx="400" cy="800" r="1" fill="white"/><circle cx="600" cy="950" r="0.7" fill="white"/><circle cx="800" cy="750" r="1.2" fill="white"/><circle cx="1000" cy="900" r="0.9" fill="white"/><circle cx="1300" cy="650" r="1" fill="white"/><circle cx="1600" cy="850" r="0.8" fill="white"/><circle cx="1900" cy="700" r="1.1" fill="white"/></svg>');
-            animation: starsMove 80s linear infinite;
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000" opacity="0.7"><g fill="white"><circle cx="50" cy="80" r="0.6"/><circle cx="220" cy="150" r="0.4"/><circle cx="400" cy="300" r="0.8"/><circle cx="600" cy="50" r="0.5"/><circle cx="800" cy="400" r="0.7"/><circle cx="1000" cy="200" r="0.9"/><circle cx="1200" cy="350" r="0.4"/><circle cx="1400" cy="100" r="0.6"/><circle cx="1600" cy="250" r="0.5"/><circle cx="1800" cy="500" r="0.8"/><circle cx="100" cy="600" r="0.7"/><circle cx="300" cy="700" r="0.5"/><circle cx="500" cy="900" r="0.9"/><circle cx="700" cy="650" r="0.4"/><circle cx="900" cy="800" r="0.6"/><circle cx="1100" cy="950" r="0.8"/><circle cx="1300" cy="750" r="0.5"/><circle cx="1500" cy="850" r="0.7"/><circle cx="1700" cy="1100" r="0.9"/><circle cx="200" cy="1200" r="0.6"/><circle cx="450" cy="1300" r="0.5"/><circle cx="750" cy="1400" r="0.8"/><circle cx="950" cy="1250" r="0.4"/><circle cx="1250" cy="1350" r="0.7"/><circle cx="1550" cy="1500" r="0.9"/></g></svg>'),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000" opacity="0.4"><g fill="white"><circle cx="70" cy="120" r="0.3"/><circle cx="270" cy="220" r="0.5"/><circle cx="470" cy="420" r="0.2"/><circle cx="670" cy="120" r="0.4"/><circle cx="870" cy="520" r="0.6"/><circle cx="1070" cy="320" r="0.3"/><circle cx="1270" cy="470" r="0.5"/><circle cx="1470" cy="170" r="0.2"/><circle cx="1670" cy="370" r="0.4"/><circle cx="1870" cy="620" r="0.6"/><circle cx="170" cy="720" r="0.5"/><circle cx="370" cy="820" r="0.3"/><circle cx="570" cy="1020" r="0.7"/><circle cx="770" cy="770" r="0.2"/><circle cx="970" cy="920" r="0.4"/><circle cx="1170" cy="1070" r="0.6"/><circle cx="1370" cy="870" r="0.3"/><circle cx="1570" cy="970" r="0.5"/><circle cx="1770" cy="1220" r="0.7"/><circle cx="270" cy="1320" r="0.4"/><circle cx="550" cy="1420" r="0.3"/><circle cx="850" cy="1560" r="0.6"/><circle cx="1050" cy="1370" r="0.2"/><circle cx="1350" cy="1470" r="0.5"/><circle cx="1650" cy="1620" r="0.7"/></g></svg>');
+            animation: starsMove 120s linear infinite;
             z-index: -1;
         }
 
         @keyframes starsMove {
-            to { transform: translateY(-500px); }
+            to { transform: translateY(-1000px); }
+        }
+
+        /* Мерцание некоторых звёзд */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000"><g fill="white"><circle cx="150" cy="180" r="0.5" opacity="0.5"/><circle cx="650" cy="480" r="0.7" opacity="0.5"/><circle cx="1150" cy="880" r="0.4" opacity="0.5"/><circle cx="1650" cy="1580" r="0.6" opacity="0.5"/></g></svg>');
+            animation: twinkle 4s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Контент */
@@ -42,41 +62,61 @@
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
             text-align: center;
-            text-shadow: 0 0 10px rgba(108, 92, 231, 0.3);
         }
 
         h2 {
             color: #6c5ce7;
             font-size: 1.5rem;
             margin-top: 2rem;
-            border-bottom: 1px solid #333;
             padding-bottom: 0.5rem;
+            position: relative;
+        }
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, #6c5ce7 0%, transparent 100%);
         }
 
+        /* Списки с анимированными звёздочками */
         ul {
             list-style-type: none;
             padding-left: 0;
         }
-
         li {
             margin-bottom: 0.8rem;
-            position: relative;
             padding-left: 1.5rem;
+            position: relative;
         }
-
-        li:before {
-            content: "•";
-            color: #6c5ce7;
+        li::before {
+            content: "✦";
             position: absolute;
             left: 0;
-            font-weight: bold;
+            color: #6c5ce7;
+            font-size: 0.8em;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Подпункты с мини-звёздами */
+        ul ul li::before {
+            content: "⋆";
+            animation: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.6em;
+            top: 0.2em;
         }
 
         .highlight {
             color: #ffffff;
             font-weight: 500;
         }
-
         .subtext {
             color: #aaa;
             font-size: 0.9rem;
@@ -88,29 +128,23 @@
             gap: 1.5rem;
             margin-top: 1rem;
         }
-
         .section {
-            background: rgba(17, 17, 17, 0.8);
+            background: rgba(17, 17, 17, 0.7);
             border-radius: 8px;
             padding: 1.2rem;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(5px);
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 1rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
+            body { padding: 1rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <h1>Конфигурация ПК</h1>
-    <p style="text-align: center; color: #aaa;">Сбалансированная сборка для игр и работы • 2025</p>
+    <h1>Моя конфигурация ПК</h1>
+    <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Сбалансированная сборка для игр и работы • 2025</p>
 
     <div class="grid">
         <div class="section">
@@ -133,7 +167,7 @@
         </div>
 
         <div class="section">
-            <h2>🎮 Периферия</h2>
+            <h2>🎮  Периферия</h2>
             <ul>
                 <li><span class="highlight">Мониторы:</span>
                     <ul>
