@@ -4,133 +4,142 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SETUP | ALIEN CHARM</title>
+<!-- Темные/светлые переменные цветов -->
+<style id="theme-vars">
+:root {
+    --bg: #0a0a0a;
+    --card-bg: rgba(44,38,91, 0.80);
+    --fg: #e0e0e0;
+    --divider: rgba(108, 92, 231,0.13);
+    --accent: #8e7bff;
+    --border: #6c5ce73c;
+    --glow: #8e7bff80;
+}
+body.light {
+    --bg: #eceaff;
+    --card-bg: rgba(255,255,255,0.70);
+    --fg: #151046;
+    --divider: #d6ccf491;
+    --accent: #7f6fed;
+    --border: #d5d1f8;
+    --glow: #7e6ffd42;
+}
+</style>
 <style>
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
+    background-color: var(--bg);
+    color: var(--fg);
     line-height: 1.6;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2.5rem 1rem 5rem 1rem;
+    padding: 2.6rem 1rem 5.5rem 1rem;
     min-height: 100vh;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
     position: relative;
     overflow-x: hidden;
+    transition: background .3s;
 }
-/* --- Звёздный космос: 2 слоя звёзд --- */
-body::before {
-    content: "";
-    position: fixed;
-    z-index: -2;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: 
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000" opacity="0.7"><g fill="white"><circle cx="50" cy="80" r="0.6"/><circle cx="220" cy="150" r="0.4"/><circle cx="400" cy="300" r="0.8"/><circle cx="600" cy="50" r="0.5"/><circle cx="800" cy="400" r="0.7"/><circle cx="1000" cy="200" r="0.9"/><circle cx="1200" cy="350" r="0.4"/><circle cx="1400" cy="100" r="0.6"/><circle cx="1600" cy="250" r="0.5"/><circle cx="1800" cy="500" r="0.8"/><circle cx="100" cy="600" r="0.7"/><circle cx="300" cy="700" r="0.5"/><circle cx="500" cy="900" r="0.9"/><circle cx="700" cy="650" r="0.4"/><circle cx="900" cy="800" r="0.6"/><circle cx="1100" cy="950" r="0.8"/><circle cx="1300" cy="750" r="0.5"/><circle cx="1500" cy="850" r="0.7"/><circle cx="1700" cy="1100" r="0.9"/><circle cx="200" cy="1200" r="0.6"/><circle cx="450" cy="1300" r="0.5"/><circle cx="750" cy="1400" r="0.8"/><circle cx="950" cy="1250" r="0.4"/><circle cx="1250" cy="1350" r="0.7"/><circle cx="1550" cy="1500" r="0.9"/></g></svg>'),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000" opacity="0.4"><g fill="white"><circle cx="70" cy="120" r="0.3"/><circle cx="270" cy="220" r="0.5"/><circle cx="470" cy="420" r="0.2"/><circle cx="670" cy="120" r="0.4"/><circle cx="870" cy="520" r="0.6"/><circle cx="1070" cy="320" r="0.3"/><circle cx="1270" cy="470" r="0.5"/><circle cx="1470" cy="170" r="0.2"/><circle cx="1670" cy="370" r="0.4"/><circle cx="1870" cy="620" r="0.6"/><circle cx="170" cy="720" r="0.5"/><circle cx="370" cy="820" r="0.3"/><circle cx="570" cy="1020" r="0.7"/><circle cx="770" cy="770" r="0.2"/><circle cx="970" cy="920" r="0.4"/><circle cx="1170" cy="1070" r="0.6"/><circle cx="1370" cy="870" r="0.3"/><circle cx="1570" cy="970" r="0.5"/><circle cx="1770" cy="1220" r="0.7"/><circle cx="270" cy="1320" r="0.4"/><circle cx="550" cy="1420" r="0.3"/><circle cx="850" cy="1560" r="0.6"/><circle cx="1050" cy="1370" r="0.2"/><circle cx="1350" cy="1470" r="0.5"/><circle cx="1650" cy="1620" r="0.7"/></g></svg>');
-    animation: starsMove 120s linear infinite;
+#starfield {
+    position:fixed;
+    left:0;top:0;width:100vw;height:100vh;
+    pointer-events:none;
+    z-index:-5;
+    background:transparent;
 }
-@keyframes starsMove { to { transform: translateY(-1000px); } }
-body::after {
-    content: "";
-    position: fixed;
-    z-index: -1;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background:
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="3000"><g fill="white"><circle cx="150" cy="180" r="0.5" opacity="0.5"/><circle cx="650" cy="480" r="0.7" opacity="0.5"/><circle cx="1150" cy="880" r="0.4" opacity="0.5"/><circle cx="1650" cy="1580" r="0.6" opacity="0.5"/></g></svg>');
-    animation: twinkle 4s ease-in-out infinite;
-    pointer-events: none;
-}
-@keyframes twinkle {0%,100%{opacity:.2;}50%{opacity:1;}}
-/* ------------------------------------- */
-
 h1 {
-    color: #fff;
+    color: var(--fg);
     font-size: 2.3rem;
     text-align: center;
     font-weight: 800;
-    margin-bottom: 2.2rem;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 18px #8e7bff90, 0 0 34px #493a9675;
+    margin-bottom: 2.1rem;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 18px var(--glow), 0 0 40px #493a9685;
     position: relative;
 }
 h1::after {
     content: "";
     display: block;
-    margin: 1.2rem auto 0 auto;
-    width: 82px; height: 2.7px;
+    margin: 1rem auto 0 auto;
+    width: 88px; height: 2.4px;
     border-radius: 2px;
-    background: linear-gradient(90deg,rgba(0,0,0,0) 0%, #8e7bff 50%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(90deg,rgba(0,0,0,0) 0%, var(--accent) 50%, rgba(0,0,0,0) 100%);
+}
+.theme-switcher {
+    position: fixed; top: 20px; right: 28px;
+    z-index: 20;
+    border-radius: 33px;
+    padding: 0.48em 1.3em;
+    border: none; outline: none; cursor: pointer;
+    font-weight: 700; font-size: 1em;
+    background: var(--card-bg); color: var(--accent);
+    box-shadow: 0 1.5px 12px var(--border),0 0 0 0 var(--accent);
+    transition: box-shadow .19s, color .16s;
+}
+.theme-switcher:hover {
+    color: #fff; background: var(--accent);
+    box-shadow: 0 3px 29px var(--glow);
 }
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
-    gap: 2.1rem 2.7rem;
-    margin-top: 1.1rem;
+    gap: 2.16rem 2.7rem;
+    margin-top: 1.2rem;
 }
 .section {
-    background: linear-gradient(120deg,rgba(44,38,91, 0.89) 80%,rgba(122,107,225,0.13) 100%);
-    border-radius: 18px;
-    padding: 2.05rem 1.7rem 1.2rem 1.8rem;
-    box-shadow: 0 4px 32px #1d1257cc, 0 0 0 1.5px #8e7bff24, 0 0 220px 4px #8e7bff1c inset;
-    border: 1.6px solid rgba(108, 92, 231, 0.09);
+    background: var(--card-bg);
+    border-radius: 33px 44px 25px 38px/38px 25px 33px 44px;
+    box-shadow: 0 4px 38px var(--glow), 0 0 0 1.5px var(--border), 0 0 110px 6px var(--glow) inset;
+    border: 2px solid var(--border);
     min-width: 0;
     position: relative;
-    transition: transform 0.22s, box-shadow 0.22s;
+    transition: transform 0.22s, box-shadow 0.22s, background .3s, border-color .3s;
+    backdrop-filter: blur(8.3px) saturate(1.07);
+    overflow: hidden;
 }
 .section:hover {
-    transform: translateY(-4px) scale(1.018);
-    box-shadow: 0 14px 46px #baaafd99, 0 0 0 2px #6c5ce750;
+    transform: translateY(-4px) scale(1.013);
+    box-shadow: 0 14px 46px var(--accent), 0 0 0 2px var(--accent);
 }
 .section-title {
-    color: #fff;
-    font-size: 1.31rem;
+    color: var(--fg);
+    font-size: 1.24rem;
     font-weight: 700;
+    letter-spacing: .11em;
+    margin-bottom: 1.07rem;
     text-transform: uppercase;
-    letter-spacing: .12em;
-    margin-bottom: 1.13rem;
-    text-shadow: 0 0 16px #8e7bff33;
-    position: relative;
-    padding-left: 0.4em;
-}
-.section-title:before {
-    content: "";
-    display: inline-block;
-    width: 14px; height: 2.7px;
-    margin-right: 0.8em; margin-bottom: 3px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, #ffe182 0%, #8e7bff 100%);
-    box-shadow: 0 0 8px #e6d30080;
+    text-shadow: 0 0 10px var(--glow);
+    padding-left: 0.35em;
+    border-left: 4px solid var(--accent);
 }
 .section ul {
     list-style-type: none;
     padding-left: 0; margin: 0;
 }
 .section li {
-    padding: 0.18em 0 0.43em 0;
-    margin-bottom: 0.58em;
-    border-bottom: 1px solid rgba(108, 92, 231, 0.10);
+    padding: 0.18em 0 0.36em 0;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid var(--divider);
     display: flex; flex-direction: column;
 }
 .section li:last-child { border-bottom: none; }
 .spec-label {
-    color: #8e7bffcd;
-    font-size: 0.84em;
-    text-transform: uppercase;
-    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.87em;
+    font-weight: 600;
     margin-bottom: 2px;
-    letter-spacing: 0.12em;
+    letter-spacing: .10em;
     opacity: 0.88;
+    text-transform: uppercase;
 }
 .spec-value {
     font-size: 1.11em;
-    color: #f6eeff;
+    color: var(--fg);
     word-break: break-word;
     font-weight: 430;
     line-height: 1.34;
+    filter: drop-shadow(0 0 7px var(--glow));
 }
-/* --- СОЦСЕТИ --- */
 .socials {
     margin: 2.4rem auto 0 auto;
     display: flex;
@@ -142,24 +151,23 @@ h1::after {
     display: flex; align-items: center; gap: 0.37em;
     font-size: 1.13rem;
     color: #fff;
-    background: #201c34f5;
+    background: #201c34dc;
     border-radius: 11px;
     padding: 0.45em 1.13em 0.45em 0.76em;
     font-weight: 600;
     text-decoration: none;
     text-shadow:0 0 8px #7d69d759;
-    border: 1.3px solid #6c5ce73b;
+    border: 1.3px solid var(--border);
     box-shadow: 0 2px 10px #1b164744;
     transition: background .16s, box-shadow .17s, transform .15s;
-    letter-spacing: 0.06em;
 }
 .socials a:hover {
-    background: #8e7bff;
+    background: var(--accent);
     color: #201c34 !important;
     text-shadow: 0 0 9px #fff2;
     transform: translateY(-2px) scale(1.036);
-    box-shadow: 0 0 28px #8e7bff81;
-    border-color:#fff2;
+    box-shadow: 0 0 24px var(--glow);
+    border-color:var(--accent);
 }
 .socials svg {
     font-size: 1.12em;
@@ -167,7 +175,7 @@ h1::after {
     margin-bottom: -1px;
 }
 @media (max-width: 900px) {
-    h1 { font-size: 1.51rem; }
+    h1 { font-size: 1.33rem; }
     .grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width:600px){
@@ -177,61 +185,100 @@ h1::after {
 </style>
 </head>
 <body>
-    <h1>SETUP | ALIEN CHARM</h1>
-    <div class="grid">
-        <div class="section">
-            <div class="section-title">Компьютер</div>
-            <ul>
-                <li><span class="spec-label">Процессор</span><span class="spec-value">Intel Core i9-13950HX</span></li>
-                <li><span class="spec-label">Материнка</span><span class="spec-value">MSI Pro B760-P WiFi DDR4</span></li>
-                <li><span class="spec-label">Видеокарта</span><span class="spec-value">Palit RTX 4070 Ti Super 16ГБ GDDR6X</span></li>
-                <li><span class="spec-label">Оперативная память</span><span class="spec-value">Patriot Viper Elite II 32ГБ @ 4000 МГц</span></li>
-                <li><span class="spec-label">Накопители</span><span class="spec-value">ADATA SX8200PNP 1ТБ SSD, KINGSTON SNV3S1000G, WD 1ТБ + Seagate 1ТБ HDD</span></li>
-                <li><span class="spec-label">Блок питания</span><span class="spec-value">DeepCool 800W <span style="color:#b8aaff;">80+ Gold</span></span></li>
-                <li><span class="spec-label">Охлаждение</span><span class="spec-value">Thermalright Aqua Elite 240 White (СЖО)</span></li>
-                <li><span class="spec-label">Корпус</span><span class="spec-value">DeepCool CC560 WH V2 (белый)</span></li>
-            </ul>
-        </div>
-        <div class="section">
-            <div class="section-title">Рабочее место &amp; стриминг</div>
-            <ul>
-                <li><span class="spec-label">Стол</span><span class="spec-value">Cougar Pure 120</span></li>
-                <li><span class="spec-label">Кресло</span><span class="spec-value">Arozzi Vernazza SuperSof Anthracite</span></li>
-                <li><span class="spec-label">Камера</span><span class="spec-value">Sony Alpha ZV-E10 II Kit 16-50mm</span></li>
-                <li><span class="spec-label">Штатив</span><span class="spec-value">K&F Concept KF09.087V6</span></li>
-                <li><span class="spec-label">Карта захвата</span><span class="spec-value">AVERMEDIA CamStream 4K</span></li>
-                <li><span class="spec-label">Микрофон</span><span class="spec-value">HyperX QuadCast</span></li>
-                <li><span class="spec-label">Пантограф</span><span class="spec-value">Thronmax Zoom S3-TM01</span></li>
-            </ul>
-        </div>
-        <div class="section">
-            <div class="section-title">Периферия</div>
-            <ul>
-                <li><span class="spec-label">Мониторы</span><span class="spec-value">LG UltraGear 27GP750-B 240Гц ×2</span></li>
-                <li><span class="spec-label">Клавиатура</span><span class="spec-value">Dark Project KD87A (Gateron Teal Cap)</span></li>
-                <li><span class="spec-label">Мышь</span><span class="spec-value">Lamzu Maya X</span></li>
-                <li><span class="spec-label">Наушники</span><span class="spec-value">Razer Barracuda X</span></li>
-                <li><span class="spec-label">Геймпад</span><span class="spec-value">PlayStation DualShock 4</span></li>
-            </ul>
-        </div>
+<button class="theme-switcher" id="themeSwitcher">🌑 / ☀️ Тема</button>
+<canvas id="starfield"></canvas>
+<h1>SETUP | ALIEN CHARM</h1>
+<div class="grid">
+    <div class="section">
+        <div class="section-title">Компьютер</div>
+        <ul>
+            <li><span class="spec-label">Процессор</span><span class="spec-value">Intel Core i9-13950HX</span></li>
+            <li><span class="spec-label">Материнка</span><span class="spec-value">MSI Pro B760-P WiFi DDR4</span></li>
+            <li><span class="spec-label">Видеокарта</span><span class="spec-value">Palit RTX 4070 Ti Super 16ГБ GDDR6X</span></li>
+            <li><span class="spec-label">Оперативная память</span><span class="spec-value">Patriot Viper Elite II 32ГБ @ 4000 МГц</span></li>
+            <li><span class="spec-label">Накопители</span><span class="spec-value">ADATA SX8200PNP 1ТБ SSD, KINGSTON SNV3S1000G, WD 1ТБ + Seagate 1ТБ HDD</span></li>
+            <li><span class="spec-label">Блок питания</span><span class="spec-value">DeepCool 800W <span style="color:#b8aaff;">80+ Gold</span></span></li>
+            <li><span class="spec-label">Охлаждение</span><span class="spec-value">Thermalright Aqua Elite 240 White (СЖО)</span></li>
+            <li><span class="spec-label">Корпус</span><span class="spec-value">DeepCool CC560 WH V2 (белый)</span></li>
+        </ul>
     </div>
-    <div class="socials">
-        <a href="https://www.youtube.com/@AlienCharm" target="_blank" rel="noopener" title="YouTube">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.956 2.956 0 0 0-2.08-2.08C20.066 3.5 12 3.5 12 3.5s-8.066 0-9.418.607a2.956 2.956 0 0 0-2.08 2.08C0 7.543 0 12 0 12s0 4.457.502 5.814a2.944 2.944 0 0 0 2.08 2.08C3.934 20.5 12 20.5 12 20.5s8.066 0 9.418-.606a2.945 2.945 0 0 0 2.08-2.08C24 16.457 24 12 24 12s0-4.457-.502-5.814zM9.546 15.568V8.432l6.29 3.568-6.29 3.568z"></path></svg>
-            YouTube
-        </a>
-        <a href="https://www.twitch.tv/aliencharm" target="_blank" rel="noopener" title="Twitch">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M2.857 0L0 4.308v17.08h5.143V24h3.429l3.429-2.308h4.286L24 16.308V0H2.857zm18.858 15.553l-3.431 3.235h-4.285l-3.43 2.307v-2.307H2.858V2.308h18.857v13.245zm-9.69-10.353h-1.714v6.857h1.714V5.2zm4.571 0h-1.714v6.857h1.714V5.2z"></path></svg>
-            Twitch
-        </a>
-        <a href="https://t.me/AlienCharm" target="_blank" rel="noopener" title="Telegram">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M9.499 16.193l-.404 4.011a.752.752 0 0 0 1.13.755l2.436-1.79 4.886 3.57a.748.748 0 0 0 1.196-.611V1.693A.747.747 0 0 0 17.749.878l-16 8.312A.75.75 0 0 0 2.5 10.7l6.999-2.337 8.34 4.37-.247.121z"></path></svg>
-            Telegram
-        </a>
-        <a href="https://vk.com/aliencharm" target="_blank" rel="noopener" title="VK">
-            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M13.436 17.984h-.879c-.117 0-.228-.058-.293-.147L10.6 15.9 9.049 17.115c-.098.084-.23.112-.35.07a.355.355 0 0 1-.227-.342V7.097c0-.15.12-.27.271-.271h1.358c3.06.036 3.473 2.187 3.473 3.733 0 1.485-.386 2.146-1.138 2.546 1.063.58 1.601 2.459 1.601 3.46v1.34c0 .149-.12.27-.271.27zM8.264 9.22c0-.62.272-1.227.806-1.826.487-.549 1.121-.833 1.884-.833 2.17 0 2.354 1.85 2.355 3.372l.004.482c.015.636.134 1.027.417 1.097.278.067.544-.177.807-.736A7.58 7.58 0 0 0 17.25 7.24c0-4.263-5.936-5.89-5.936-5.89S5.378 2.976 5.378 7.239c0 1.39.161 3.208 1.222 4.843.216.338.494.564.772.628.278.065.545-.102.714-.388v-1.1c0-.3.098-.59.274-.828.372-.489.768-.681 1.049-.681.293 0 .469.193.469.554v3.697c0 .36-.176.554-.469.554-.053 0-.347-.044-.72-.642a5.769 5.769 0 0 1-1.112-3.36z"></path></svg>
-            VK
-        </a>
+    <div class="section">
+        <div class="section-title">Рабочее место &amp; стриминг</div>
+        <ul>
+            <li><span class="spec-label">Стол</span><span class="spec-value">Cougar Pure 120</span></li>
+            <li><span class="spec-label">Кресло</span><span class="spec-value">Arozzi Vernazza SuperSof Anthracite</span></li>
+            <li><span class="spec-label">Камера</span><span class="spec-value">Sony Alpha ZV-E10 II Kit 16-50mm</span></li>
+            <li><span class="spec-label">Штатив</span><span class="spec-value">K&F Concept KF09.087V6</span></li>
+            <li><span class="spec-label">Карта захвата</span><span class="spec-value">AVERMEDIA CamStream 4K</span></li>
+            <li><span class="spec-label">Микрофон</span><span class="spec-value">HyperX QuadCast</span></li>
+            <li><span class="spec-label">Пантограф</span><span class="spec-value">Thronmax Zoom S3-TM01</span></li>
+        </ul>
     </div>
+    <div class="section">
+        <div class="section-title">Периферия</div>
+        <ul>
+            <li><span class="spec-label">Мониторы</span><span class="spec-value">LG UltraGear 27GP750-B 240Гц ×2</span></li>
+            <li><span class="spec-label">Клавиатура</span><span class="spec-value">Dark Project KD87A (Gateron Teal Cap)</span></li>
+            <li><span class="spec-label">Мышь</span><span class="spec-value">Lamzu Maya X</span></li>
+            <li><span class="spec-label">Наушники</span><span class="spec-value">Razer Barracuda X</span></li>
+            <li><span class="spec-label">Геймпад</span><span class="spec-value">PlayStation DualShock 4</span></li>
+        </ul>
+    </div>
+</div>
+<div class="socials">
+    <a href="https://www.youtube.com/@AlienCharm" target="_blank" rel="noopener" title="YouTube">
+        <svg fill="currentColor" viewBox="0 0 24 24" style="color:#ff3939;"><path d="M23.498 6.186a2.956 2.956 0 0 0-2.08-2.08C20.066 3.5 12 3.5 12 3.5s-8.066 0-9.418.607a2.956 2.956 0 0 0-2.08 2.08C0 7.543 0 12 0 12s0 4.457.502 5.814a2.944 2.944 0 0 0 2.08 2.08C3.934 20.5 12 20.5 12 20.5s8.066 0 9.418-.606a2.945 2.945 0 0 0 2.08-2.08C24 16.457 24 12 24 12s0-4.457-.502-5.814zM9.546 15.568V8.432l6.29 3.568-6.29 3.568z"></path></svg>
+        YouTube
+    </a>
+    <a href="https://www.twitch.tv/aliencharm" target="_blank" rel="noopener" title="Twitch">
+        <svg fill="currentColor" viewBox="0 0 24 24" style="color:#a469ff;"><path d="M2.857 0L0 4.308v17.08h5.143V24h3.429l3.429-2.308h4.286L24 16.308V0H2.857zm18.858 15.553l-3.431 3.235h-4.285l-3.43 2.307v-2.307H2.858V2.308h18.857v13.245zm-9.69-10.353h-1.714v6.857h1.714V5.2zm4.571 0h-1.714v6.857h1.714V5.2z"></path></svg>
+        Twitch
+    </a>
+    <a href="https://t.me/AlienCharm" target="_blank" rel="noopener" title="Telegram">
+        <svg fill="currentColor" viewBox="0 0 24 24" style="color:#45aee4;"><path d="M9.499 16.193l-.404 4.011a.752.752 0 0 0 1.13.755l2.436-1.79 4.886 3.57a.748.748 0 0 0 1.196-.611V1.693A.747.747 0 0 0 17.749.878l-16 8.312A.75.75 0 0 0 2.5 10.7l6.999-2.337 8.34 4.37-.247.121z"></path></svg>
+        Telegram
+    </a>
+    <a href="https://vk.com/aliencharm" target="_blank" rel="noopener" title="VK">
+        <svg fill="currentColor" viewBox="0 0 24 24" style="color:#5d82e6;"><path d="M13.436 17.984h-.879c-.117 0-.228-.058-.293-.147L10.6 15.9 9.049 17.115c-.098.084-.23.112-.35.07a.355.355 0 0 1-.227-.342V7.097c0-.15.12-.27.271-.271h1.358c3.06.036 3.473 2.187 3.473 3.733 0 1.485-.386 2.146-1.138 2.546 1.063.58 1.601 2.459 1.601 3.46v1.34c0 .149-.12.27-.271.27zM8.264 9.22c0-.62.272-1.227.806-1.826.487-.549 1.121-.833 1.884-.833 2.17 0 2.354 1.85 2.355 3.372l.004.482c.015.636.134 1.027.417 1.097.278.067.544-.177.807-.736A7.58 7.58 0 0 0 17.25 7.24c0-4.263-5.936-5.89-5.936-5.89S5.378 2.976 5.378 7.239c0 1.39.161 3.208 1.222 4.843.216.338.494.564.772.628.278.065.545-.102.714-.388v-1.1c0-.3.098-.59.274-.828.372-.489.768-.681 1.049-.681.293 0 .469.193.469.554v3.697c0 .36-.176.554-.469.554-.053 0-.347-.044-.72-.642a5.769 5.769 0 0 1-1.112-3.36z"></path></svg>
+        VK
+    </a>
+</div>
+<!-- Плавающие интерактивные звёзды -->
+<script>
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+function resizeStarCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeStarCanvas();
+window.addEventListener('resize', resizeStarCanvas);
+const stars = Array.from({length:100},()=>({x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,dx:(Math.random()-0.5)/2,dy:(Math.random()-0.5)/2,
+    r:Math.random()*1.2+0.3,op:Math.random()*0.6+0.3}));
+let mx=canvas.width/2,my=canvas.height/2;
+window.onmousemove = e => { mx = e.clientX; my = e.clientY; };
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(const s of stars){
+        s.x+=s.dx+(mx-canvas.width/2)/canvas.width*0.7; s.y+=s.dy+(my-canvas.height/2)/canvas.height*0.7;
+        if(s.x<0) s.x=canvas.width; if(s.x>canvas.width) s.x=0; if(s.y<0) s.y=canvas.height; if(s.y>canvas.height) s.y=0;
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
+        ctx.fillStyle = `rgba(255,255,255,${s.op})`;
+        ctx.shadowBlur=7; ctx.shadowColor='#8e7bff'; ctx.fill();
+    }
+    ctx.shadowBlur=0;
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+<script>
+document.getElementById('themeSwitcher').onclick = ()=>{
+    document.body.classList.toggle('light');
+    localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark');
+};
+if(localStorage.theme==='light') document.body.classList.add('light');
+</script>
 </body>
 </html>
