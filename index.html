@@ -9,98 +9,166 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: #0a0a0a;
             color: #e0e0e0;
-            max-width: 700px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 1.2rem;
+            padding: 2rem 0.5rem 1.5rem 0.5rem;
             overflow-x: hidden;
+            min-height: 100vh;
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
-        }
-        body::before, body::after {
-            content: "";
-            position: fixed;
-            z-index: -1;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
-        body::before {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="700" height="800"><g fill="white" opacity="0.6"><circle cx="30" cy="40" r="0.8"/><circle cx="200" cy="150" r="0.6"/><circle cx="300" cy="400" r="0.5"/><circle cx="600" cy="60" r="0.8"/><circle cx="400" cy="700" r="0.6"/><circle cx="600" cy="300" r="0.7"/></g></svg>');
-        }
-        body::after {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="700" height="800"><g fill="white" opacity="0.3"><circle cx="100" cy="120" r="0.4"/><circle cx="500" cy="720" r="0.6"/></g></svg>');
-        }
-        h1 {
-            color: #fff;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1.4rem;
-            letter-spacing: -0.5px;
-            font-weight: 700;
-            text-shadow: 0 0 8px #6c5ce788;
-            padding-bottom: 0.2rem;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            font-size: 1.09rem;
-        }
-        li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.7rem;
             position: relative;
         }
-        li::before {
+        /* --- АНИМАЦИИ ЗВЁЗД --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" ... )');
+            /* ... Сокращено для примера, возьми свой оригинальный star-bg svg ... */
+            animation: starsMove 120s linear infinite;
+        }
+        @keyframes starsMove {
+            to { transform: translateY(-1000px); }
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" ... )');
+            /* ... Вторая подложка ... */
+            animation: twinkle 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes twinkle {
+            0%,100% { opacity: 0.2;}
+            50% { opacity: 1;}
+        }
+
+        h1 {
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+            text-shadow: 0 0 12px rgba(108, 92, 231, 0.1);
+            position: relative;
+        }
+        h1::after {
+            content: "";
+            display: block;
+            margin: 0.7rem auto 0 auto;
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg,transparent 0%, #6c5ce7 40%,transparent 100%);
+        }
+
+        /* --- КОМПАКТНАЯ СЕТКА --- */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+        }
+        @media (max-width: 740px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 0.7rem;
+            }
+        }
+
+        .section {
+            background: rgba(27, 21, 49, 0.78);
+            border-radius: 9px;
+            padding: 1.1rem 1.25rem 1.1rem 1.25rem;
+            border: 1px solid rgba(108, 92, 231, 0.10);
+            box-shadow: 0 4px 22px #0008, inset 0 0 11px #6c5ce709;
+            transition: transform 0.27s, box-shadow 0.27s;
+        }
+        .section:hover {
+            transform: translateY(-3px) scale(1.015);
+            box-shadow: 0 7px 32px #000b, 0 0 0 1px #6c5ce740;
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .section li {
+            margin-bottom: 0.5em;
+            padding-left: 1.35rem;
+            position: relative;
+            font-size: 1.07rem;
+        }
+        .section li:last-child { margin-bottom: 0; }
+        .section li::before {
             content: "✦";
             color: #6c5ce7;
             position: absolute;
             left: 0;
-            font-size: 1em;
+            font-size: 0.93em;
+            animation: pulse 2.4s infinite;
+            text-shadow: 0 0 5px #6c5ce7aa;
         }
-        .tag {
-            font-size: 0.90em;
-            color: #6c5ce7;
-            background: rgba(108, 92, 231, 0.08);
-            border-radius: 6px;
-            padding: 2px 7px;
-            margin-right: 0.5em;
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: scale(1);}
+            50% { opacity: 1; transform: scale(1.2);}
         }
-        .catgroup {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.2rem 2.2rem;
-            justify-content: center;
+        .highlight {
+            color: #fff;
+            font-weight: 500;
         }
-        @media (max-width: 600px) {
-            body { padding: 0.5rem; font-size: 0.98rem;}
-            h1 { font-size: 1.17rem;}
+        .subtext {
+            color: #aaa;
+            font-size: 0.97em;
         }
     </style>
 </head>
 <body>
-    <h1>SETUP <span style="color:#6c5ce7;">ALIEN CHARM</span></h1>
-    <ul class="catgroup">
+    <h1>SETUP | ALIEN CHARM</h1>
+    <div class="grid">
 
-        <li><span class="tag">CPU</span>Intel Core i9-13950HX</li>
-        <li><span class="tag">GPU</span>Palit RTX 4070 Ti Super 16 ГБ</li>
-        <li><span class="tag">MB</span>MSI Pro B760-P WiFi DDR4</li>
-        <li><span class="tag">RAM</span>Patriot Viper Elite II 32 ГБ @ 4000 МГц</li>
-        <li><span class="tag">SSD</span>ADATA SX8200PNP 1 ТБ, KINGSTON SNV3S1000G, WD 1 ТБ + Seagate 1 ТБ HDD</li>
-        <li><span class="tag">Питание</span>DeepCool 800W 80+ Gold</li>
-        <li><span class="tag">Охлаждение</span>Thermalright Aqua Elite 240 White (СЖО)</li>
-        <li><span class="tag">Корпус</span>DeepCool CC560 WH V2 (белый)</li>
-        <li><span class="tag">Мониторы</span>LG UltraGear 27GP750-B 240 Гц x2</li>
-        <li><span class="tag">Клавиатура</span>Dark Project KD87A (Gateron Teal Cap)</li>
-        <li><span class="tag">Мышь</span>Lamzu Maya X</li>
-        <li><span class="tag">Наушники</span>Razer Barracuda X</li>
-        <li><span class="tag">Геймпад</span>PlayStation DualShock 4</li>
-        <li><span class="tag">Камера</span>Sony Alpha ZV-E10 II Kit 16-50mm</li>
-        <li><span class="tag">Штатив</span>K&F Concept KF09.087V6</li>
-        <li><span class="tag">Карта захвата</span>AVERMEDIA CamStream 4K</li>
-        <li><span class="tag">Микрофон</span>HyperX QuadCast</li>
-        <li><span class="tag">Пантограф</span>Thronmax Zoom S3-TM01</li>
-        <li><span class="tag">Стол</span>Cougar Pure 120</li>
-        <li><span class="tag">Кресло</span>Arozzi Vernazza SuperSof Anthracite</li>
-        
-    </ul>
+        <!-- БЛОК 1: ПК, периферия, рабочее место -->
+        <div class="section">
+            <ul>
+                <li><span class="highlight">CPU:</span> i9-13950HX</li>
+                <li><span class="highlight">GPU:</span> RTX 4070 Ti Super 16ГБ</li>
+                <li><span class="highlight">Мать:</span> MSI Pro B760-P WiFi DDR4</li>
+                <li><span class="highlight">RAM:</span> 32ГБ Patriot Viper Elite II @ 4000 МГц</li>
+                <li><span class="highlight">SSD:</span> ADATA SX8200PNP, KINGSTON, HDD WD+Seagate</li>
+                <li><span class="highlight">Питание:</span> DeepCool 800W 80+Gold</li>
+                <li><span class="highlight">Охлаждение:</span> Aqua Elite 240 White</li>
+                <li><span class="highlight">Корпус:</span> DeepCool CC560 WH V2</li>
+                <li><span class="highlight">Стол:</span> Cougar Pure 120</li>
+                <li><span class="highlight">Кресло:</span> Arozzi Vernazza SuperSof</li>
+            </ul>
+        </div>
+
+        <!-- БЛОК 2: остальное (периферия, стрим) -->
+        <div class="section">
+            <ul>
+                <li><span class="highlight">Дисплеи:</span> LG UltraGear 27GP750-B 240Гц x2</li>
+                <li><span class="highlight">Клава:</span> Dark Project KD87A Gateron</li>
+                <li><span class="highlight">Мышь:</span> Lamzu Maya X</li>
+                <li><span class="highlight">Наушники:</span> Razer Barracuda X</li>
+                <li><span class="highlight">Геймпад:</span> PS DualShock 4</li>
+                <li><span class="highlight">Камера:</span> Sony Alpha ZV-E10 II Kit</li>
+                <li><span class="highlight">Штатив:</span> K&F Concept</li>
+                <li><span class="highlight">Карта захвата:</span> AVERMEDIA CamStream 4K</li>
+                <li><span class="highlight">Микрофон:</span> HyperX QuadCast</li>
+                <li><span class="highlight">Пантограф:</span> Thronmax Zoom S3-TM01</li>
+            </ul>
+        </div>
+
+    </div>
 </body>
 </html>
