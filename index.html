@@ -1,205 +1,251 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SETUP | ALIEN CHARM</title>
-    <style>
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 2rem 0.5rem 2.5rem 0.5rem;
-            overflow-x: hidden;
-            min-height: 100vh;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2000" opacity="0.6"><g fill="white"><circle cx="50" cy="80" r="0.6"/><circle cx="200" cy="280" r="0.7"/><circle cx="300" cy="800" r="0.5"/><circle cx="600" cy="70" r="0.7"/><circle cx="900" cy="1300" r="0.7"/></g></svg>');
-            animation: starsMove 100s linear infinite;
-        }
-        @keyframes starsMove {
-            to { transform: translateY(-400px); }
-        }
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2000" opacity="0.4"><g fill="white"><circle cx="150" cy="170" r="0.2"/><circle cx="400" cy="900" r="0.4"/><circle cx="990" cy="1320" r="0.5"/></g></svg>');
-            animation: twinkle 7s linear infinite;
-            pointer-events: none;
-        }
-        @keyframes twinkle {
-            0%,100%{opacity: 0.2;}
-            50%{opacity: 1;}
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETUP | ALIEN CHARM</title>
+<style>
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #101018;
+    color: #e0e0e0;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 2.5rem 1rem 1.5rem 1rem;
+    overflow-x: hidden;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    position: relative;
+}
+body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0; left: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+body::before {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="2000" opacity="0.7"><g fill="white"><circle cx="150" cy="70" r="0.9"/><circle cx="650" cy="370" r="0.7"/><circle cx="1050" cy="190" r="0.7"/><circle cx="250" cy="1280" r="0.32"/><circle cx="800" cy="1800" r="0.9"/></g></svg>');
+    animation: starsMove 140s linear infinite;
+}
+@keyframes starsMove { to { transform: translateY(-400px); } }
+body::after {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="2000" opacity="0.25"><g fill="white"><circle cx="540" cy="174" r="0.5"/><circle cx="1200" cy="350" r="0.6"/><circle cx="400" cy="920" r="0.3"/></g></svg>');
+    animation: twinkle 9s ease-in-out infinite;
+}
+@keyframes twinkle { 0%,100%{opacity:0.2;} 50%{opacity:1;} }
 
-        h1 {
-            color: #fff;
-            font-weight: 700;
-            text-align: center;
-            font-size: 2.45rem;
-            letter-spacing: -1px;
-            text-shadow: 0 0 15px #6c5ce77d,0 0 8px #181940;
-            margin: 0 0 2rem 0;
-            position: relative;
-        }
-        h1::after {
-            content: "";
-            display: block;
-            margin: 1.1rem auto 0 auto;
-            width: 90px;
-            height: 2px;
-            background: linear-gradient(90deg,transparent 0%, #6c5ce7 40%, transparent 100%);
-        }
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        @media (max-width: 820px) {
-            .main-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-        }
-        .block {
-            background: rgba(25, 19, 44, 0.75);
-            border-radius: 13px;
-            padding: 1.6rem 1.6rem 1.2rem 1.6rem;
-            border: 1px solid #6c5ce712;
-            box-shadow: 0 6px 28px #000c, 0 0 0 0 #131221;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            transition: box-shadow 0.2s,transform 0.24s;
-        }
-        .block:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 11px 42px #000d, 0 0 0 1.5px #6c5ce746;
-        }
-        .block-title {
-            color: #fff;
-            font-size: 1.24rem;
-            margin-bottom: 0.7rem;
-            font-weight: 600;
-            letter-spacing: -0.2px;
-            text-shadow: 0 0 10px #6c5ce755;
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-        .block-title span {
-            font-size: 1.34em; 
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-        li {
-            margin-bottom: 0.6rem;
-            font-size: 1.03rem;
-            padding-left: 1.35rem;
-            position: relative;
-            letter-spacing: 0.18px;
-        }
-        li:last-child { margin-bottom: 0; }
-        li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: #6c5ce7;
-            font-size: 0.93em;
-            animation: pulse 2.7s infinite;
-            text-shadow: 0 0 7px #6c5ce7bb;
-        }
-        @keyframes pulse {
-            0%,100%{ opacity: 0.8; transform: scale(1);}
-            50%{ opacity: 1; transform: scale(1.16);}
-        }
-        .highlight {
-            color: #fff;
-            font-weight: 500;
-        }
-        .subtext {
-            color: #aaa;
-            font-size: 0.96em;
-        }
-        /* Дополнительное оформление для читаемости */
-        .group {
-            margin-top: 1.2em;
-            margin-bottom: 0.6em;
-            font-size: 1em;
-            letter-spacing:0.08em;
-            color:#bbb;
-            font-weight: 500;
-            text-shadow:0 0 10px #6c5ce739;
-        }
-    </style>
+h1 {
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: -1px;
+    text-shadow: 0 0 16px #6c5ce759,0 0 8px #23203c;
+}
+h1::after {
+    content: "";
+    display: block;
+    margin: 1.2rem auto 0 auto;
+    width: 120px;
+    height: 2.5px;
+    background: linear-gradient(90deg,transparent 0%, #6c5ce7 50%, transparent 100%);
+}
+
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.3rem 1.7rem;
+    justify-items: stretch;
+    align-items: stretch;
+}
+@media (max-width: 950px) { .setup-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .setup-grid { grid-template-columns: 1fr;} h1{font-size:1.5rem;} }
+
+.card {
+    background: rgba(30,25,43,0.92);
+    border-radius: 15px;
+    box-shadow: 0 6px 34px 0 #000a, 0 0 0 0 #15141e;
+    padding: 2.1rem 1rem 1.7rem 1rem;
+    border: 1.4px solid #6c5ce71f;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s,transform 0.21s;
+    position: relative;
+}
+.card:hover {
+    transform: translateY(-7px) scale(1.01);
+    box-shadow: 0 17px 54px #000b,0 0 0 2px #6c5ce742;
+}
+.card .icon {
+    font-size: 2.2em;
+    margin-bottom: 0.5em;
+    color: #6c5ce7; 
+    text-shadow: 0 0 10px #6c5ce7aa;
+}
+.card-title {
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-shadow:0 0 12px #6c5ce742;
+    text-align: center;
+    letter-spacing: 0.02em;
+}
+.spec-list {
+    width: 100%;
+}
+.spec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+.spec-item {
+    background: rgba(108, 92, 231,0.11);
+    border-radius: 8px;
+    padding: 0.8em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 3.45em;
+    justify-content: center;
+    box-shadow: 0 0 8px #6c5ce715;
+}
+.spec-name {
+    color: #6c5ce7;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0.14em;
+    letter-spacing: 0.08em;
+}
+.spec-desc {
+    font-size: 1.03em;
+    color: #ebe6f9;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    width: 100%;
+}
+@media (max-width: 450px){
+    .spec-desc {white-space: normal;}
+}
+</style>
 </head>
 <body>
-    <h1>SETUP | ALIEN CHARM</h1>
-    <div class="main-grid">
-        <!-- ПК -->
-        <div class="block">
-            <div class="block-title"><span>🖥️</span>Компьютер</div>
-            <ul>
-                <li><span class="highlight">Процессор:</span> Intel Core i9‑13950HX</li>
-                <li><span class="highlight">Материнка:</span> MSI Pro B760‑P WiFi DDR4</li>
-                <li><span class="highlight">Видеокарта:</span> RTX 4070 Ti Super 16ГБ</li>
-                <li><span class="highlight">Оперативка:</span> 32ГБ Patriot Viper Elite II @4000МГц</li>
-                <li><span class="highlight">Накопители:</span> ADATA SX8200PNP 1ТБ, KINGSTON SNV3S1000G, WD 1ТБ + Seagate 1ТБ</li>
-                <li><span class="highlight">БП:</span> DeepCool 800W 80+ Gold</li>
-                <li><span class="highlight">Охлаждение:</span> Thermalright Aqua Elite 240 White <span class="subtext">(СЖО)</span></li>
-                <li><span class="highlight">Корпус:</span> DeepCool CC560 WH V2 <span class="subtext">(белый)</span></li>
-            </ul>
-        </div>
+<h1>SETUP | ALIEN CHARM</h1>
+<div class="setup-grid">
 
-        <!-- Рабочее место -->
-        <div class="block">
-            <div class="block-title"><span>🪑</span>Рабочее место</div>
-            <ul>
-                <li><span class="highlight">Стол:</span> Cougar Pure 120</li>
-                <li><span class="highlight">Кресло:</span> Arozzi Vernazza SuperSof Anthracite</li>
-            </ul>
-            <div class="group" style="margin-top:1.5em; margin-bottom:.3em;">Периферия</div>
-            <ul>
-                <li><span class="highlight">Мониторы:</span> LG UltraGear 27GP750-B 240Гц ×2</li>
-                <li><span class="highlight">Клавиатура:</span> Dark Project KD87A <span class="subtext">(Gateron Teal Cap)</span></li>
-                <li><span class="highlight">Мышь:</span> Lamzu Maya X</li>
-                <li><span class="highlight">Наушники:</span> Razer Barracuda X</li>
-                <li><span class="highlight">Геймпад:</span> PlayStation DualShock 4</li>
-            </ul>
-        </div>
-        
-        <!-- Стрим -->
-        <div class="block">
-            <div class="block-title"><span>📹</span>Стриминг</div>
-            <ul>
-                <li><span class="highlight">Камера:</span> Sony Alpha ZV-E10 II Kit 16‑50мм</li>
-                <li><span class="highlight">Штатив:</span> K&F Concept KF09.087V6</li>
-                <li><span class="highlight">Карта захвата:</span> AVERMEDIA CamStream 4K</li>
-                <li><span class="highlight">Микрофон:</span> HyperX QuadCast</li>
-                <li><span class="highlight">Пантограф:</span> Thronmax Zoom S3‑TM01</li>
-            </ul>
-        </div>
+  <!-- ПК -->
+  <div class="card">
+    <div class="icon">🖥️</div>
+    <div class="card-title">Компьютер</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-name">Процессор</div>
+        <div class="spec-desc">Intel Core i9‑13950HX</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Материнка</div>
+        <div class="spec-desc">MSI Pro B760‑P WiFi DDR4</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Видеокарта</div>
+        <div class="spec-desc">Palit RTX 4070 Ti Super 16ГБ</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Оперативка</div>
+        <div class="spec-desc">Patriot Viper Elite II 32ГБ @ 4000МГц</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Накопители</div>
+        <div class="spec-desc">ADATA SX8200PNP 1ТБ, KINGSTON SNV3S1000G, WD 1ТБ, Seagate 1ТБ</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Блок питания</div>
+        <div class="spec-desc">DeepCool 800W 80+ Gold</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Охлаждение</div>
+        <div class="spec-desc">Thermalright Aqua Elite 240 White (СЖО)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Корпус</div>
+        <div class="spec-desc">DeepCool CC560 WH V2 (белый)</div>
+      </div>
     </div>
+  </div>
+
+  <!-- Место и периферия -->
+  <div class="card">
+    <div class="icon">🪑</div>
+    <div class="card-title">Рабочее место и периферия</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-name">Стол</div>
+        <div class="spec-desc">Cougar Pure 120</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Кресло</div>
+        <div class="spec-desc">Arozzi Vernazza SuperSof Anthracite</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Дисплеи</div>
+        <div class="spec-desc">LG UltraGear 27GP750-B 240Гц ×2</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Клавиатура</div>
+        <div class="spec-desc">Dark Project KD87A (Gateron Teal Cap)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Мышь</div>
+        <div class="spec-desc">Lamzu Maya X</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Наушники</div>
+        <div class="spec-desc">Razer Barracuda X</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Геймпад</div>
+        <div class="spec-desc">PlayStation DualShock 4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Стрим -->
+  <div class="card">
+    <div class="icon">📹</div>
+    <div class="card-title">Стриминг</div>
+    <div class="spec-list">
+      <div class="spec-item">
+        <div class="spec-name">Камера</div>
+        <div class="spec-desc">Sony Alpha ZV-E10 II Kit 16‑50мм</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Штатив</div>
+        <div class="spec-desc">K&F Concept KF09.087V6</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Карта захвата</div>
+        <div class="spec-desc">AVERMEDIA CamStream 4K</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Микрофон</div>
+        <div class="spec-desc">HyperX QuadCast</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-name">Пантограф</div>
+        <div class="spec-desc">Thronmax Zoom S3‑TM01</div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
