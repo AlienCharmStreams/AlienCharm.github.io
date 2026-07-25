@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SETUP | ALIEN CHARM</title>
-<!-- Темные/светлые переменные цветов -->
 <style id="theme-vars">
 :root {
     --bg: #0a0a0a;
@@ -13,21 +12,21 @@
     --divider: rgba(108, 92, 231,0.13);
     --accent: #8e7bff;
     --border: #6c5ce73c;
-    --glow: #8e7bff80;
+    --glow: #8e7bff77;
 }
 body.light {
     --bg: #eceaff;
     --card-bg: rgba(255,255,255,0.70);
     --fg: #151046;
     --divider: #d6ccf491;
-    --accent: #7f6fed;
+    --accent: #6c5ce7;
     --border: #d5d1f8;
-    --glow: #7e6ffd42;
+    --glow: #b9aaff38;
 }
 </style>
 <style>
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     background-color: var(--bg);
     color: var(--fg);
     line-height: 1.6;
@@ -65,30 +64,46 @@ h1::after {
     border-radius: 2px;
     background: linear-gradient(90deg,rgba(0,0,0,0) 0%, var(--accent) 50%, rgba(0,0,0,0) 100%);
 }
-.theme-switcher {
-    position: fixed; top: 20px; right: 28px;
-    z-index: 20;
-    border-radius: 33px;
-    padding: 0.48em 1.3em;
-    border: none; outline: none; cursor: pointer;
-    font-weight: 700; font-size: 1em;
-    background: var(--card-bg); color: var(--accent);
-    box-shadow: 0 1.5px 12px var(--border),0 0 0 0 var(--accent);
-    transition: box-shadow .19s, color .16s;
+.stylish-switcher {
+    position: fixed;
+    top: 24px; right: 28px;
+    z-index: 33;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: rgba(60,50,90,.76);
+    box-shadow: 0 0 12px #8e7bff80,0 4px 22px #9e92f911;
+    color: #ffd700;
+    cursor: pointer; outline: none;
+    transition: background .25s, box-shadow .25s, color .2s;
+    backdrop-filter: blur(8px) saturate(1.045);
+    overflow: hidden;
 }
-.theme-switcher:hover {
-    color: #fff; background: var(--accent);
-    box-shadow: 0 3px 29px var(--glow);
+.stylish-switcher:hover,.stylish-switcher:focus-visible {
+    box-shadow: 0 0 22px 2px #8e7bffbb, 0 5px 32px #8e7bff68;
+    background: rgba(120,111,255,0.18);
 }
+.stylish-switcher .icon-moon,
+.stylish-switcher .icon-sun { transition:.25s; opacity:0; position:absolute; }
+.stylish-switcher .icon-sun { color: #ffb018; }
+.stylish-switcher .icon-moon { color: #e9eafb; }
+body.light .stylish-switcher .icon-sun { opacity:1; position:static; }
+body:not(.light) .stylish-switcher .icon-moon { opacity:1; position:static;}
+@media (max-width:600px){
+    .stylish-switcher { top:12px; right:10px;width:41px;height:41px; }
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
     gap: 2.16rem 2.7rem;
     margin-top: 1.2rem;
 }
+
 .section {
     background: var(--card-bg);
-    border-radius: 33px 44px 25px 38px/38px 25px 33px 44px;
+    border-radius: 24px;
     box-shadow: 0 4px 38px var(--glow), 0 0 0 1.5px var(--border), 0 0 110px 6px var(--glow) inset;
     border: 2px solid var(--border);
     min-width: 0;
@@ -117,7 +132,7 @@ h1::after {
     padding-left: 0; margin: 0;
 }
 .section li {
-    padding: 0.18em 0 0.36em 0;
+    padding: 0.12em 0 0.29em 0;
     margin-bottom: 0.6em;
     border-bottom: 1px solid var(--divider);
     display: flex; flex-direction: column;
@@ -185,7 +200,15 @@ h1::after {
 </style>
 </head>
 <body>
-<button class="theme-switcher" id="themeSwitcher">🌑 / ☀️ Тема</button>
+<!-- Dark/Light Mode Modern Switcher -->
+<button id="themeSwitcher" aria-label="Переключить тему" title="Переключить тему" class="stylish-switcher">
+  <span class="icon-moon active">
+    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12.4 2.5a1 1 0 0 1 1.27 1.27A9 9 0 1 0 20.23 17a1 1 0 0 1 1.27 1.27A11 11 0 1 1 12.4 2.5Z"></path></svg>
+  </span>
+  <span class="icon-sun">
+    <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><line x1="12" y1="1.8" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.2"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1.8" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.2" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
+  </span>
+</button>
 <canvas id="starfield"></canvas>
 <h1>SETUP | ALIEN CHARM</h1>
 <div class="grid">
@@ -243,7 +266,7 @@ h1::after {
         VK
     </a>
 </div>
-<!-- Плавающие интерактивные звёзды -->
+<!-- Главное интерактивное звёздное поле -->
 <script>
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
@@ -275,8 +298,8 @@ animate();
 </script>
 <script>
 document.getElementById('themeSwitcher').onclick = ()=>{
-    document.body.classList.toggle('light');
-    localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark');
+  document.body.classList.toggle('light');
+  localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark');
 };
 if(localStorage.theme==='light') document.body.classList.add('light');
 </script>
